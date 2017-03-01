@@ -1,5 +1,5 @@
 
-## JavaScript 中 `undefined` 和 `not defined` 的区别
+## 问题1:JavaScript 中 `undefined` 和 `not defined` 的区别
 
 JavaScript 未声明变量直接使用会抛出异常：`var name is not defined`，如果没有处理异常，代码就停止运行了。
 但是，使用`typeof undeclared_variable`并不会产生异常，会直接返回 `undefined`。
@@ -17,7 +17,7 @@ console.log(typeof y); //output: undefined
 console.log(z);  // 抛出异常: ReferenceError: z is not defined
 ```
 
-## 下面的代码输出什么？
+## 问题2:下面的代码输出什么？
 
 ```js
 var y = 1;
@@ -57,7 +57,7 @@ if (1) {
 console.log(k); // output 1function
 ```
 
-## 在JavaScript中创建一个真正的private方法有什么缺点？
+## 问题3:在JavaScript中创建一个真正的private方法有什么缺点？
 
 每一个对象都会创建一个private方法的方法，这样很耗费内存
 
