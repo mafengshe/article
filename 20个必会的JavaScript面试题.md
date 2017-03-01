@@ -245,7 +245,7 @@ var output = (function(x){
 console.log(output);
 ```
 
-输出是 `1`。 `delete` 操作符是将object的属性删去的操作。但是这里的 `x` 是局部变量， `delete` 操作符并不能作用在局部变量上。
+输出是 `0`。 `delete` 操作符是将object的属性删去的操作。但是这里的 `x` 是并不是对象的属性， `delete` 操作符并不能作用。
 
 
 ## 问题9:下面代码输出什么？
@@ -260,7 +260,7 @@ var output = (function(){
 console.log(output);
 ```
 
-输出是 `1`。`delete` 操作符是将object的属性删去的操作。但是这里的 `x` 是全局变量， `delete` 操作符并不能作用在全局变量上。
+输出是 `1`。`delete` 操作符是将object的属性删去的操作。但是这里的 `x` 是并不是对象的属性， `delete` 操作符并不能作用。
 
 ## 问题10:下面代码输出什么？
 
@@ -290,7 +290,7 @@ console.log(emp1.company);
 
 ## 问题12:什么是 `undefined x 1` ？
 
-在chrome下执行如下代码，我们就能获得`undefined x 1`
+在chrome下执行如下代码，我们就可以看到`undefined x 1`的身影。
 
 ```js
 var trees = ["redwood","bay","cedar","oak","maple"];
@@ -381,7 +381,8 @@ function bar(){ return 12; };
 typeof bar();  
 ```
 
-系统的说明下问题
+明确说明这个下问题
+
 ```js
 var foo = function bar(){ 
     // foo is visible here 
@@ -502,12 +503,10 @@ console.log(new foo() instanceof foo);
 如
 
 ```js
-var dog = new Animal();
-dog instanceof Animal // Output : true
-```
-和 
-
-```js
+function Animal(){
+    //或者不写return语句
+    return this;
+}
 var dog = new Animal();
 dog instanceof Animal // Output : true
 ```
