@@ -90,7 +90,7 @@ var emp3 = new Employee("Ren","Pluto",2500);
 
 在这里 emp1,emp2,emp3都有一个increaseSalary私有方法的副本。
 
-所以我们除非必要，否则非常不推荐使用私有方法。
+所以我们除非必要，非常不推荐使用私有方法。
 
 ## 问题4:JavaScript中什么是闭包？写出一个例子
 
