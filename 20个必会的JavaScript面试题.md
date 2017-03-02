@@ -335,7 +335,7 @@ truexyz
 
 - Number + Number -> 加法
 - Boolean + Number -> 加法
-- Boolean + Number -> 加法
+- Boolean + Boolean -> 加法
 - Number + String -> 连接
 - String + Boolean -> 连接
 - String + String -> 连接
@@ -547,4 +547,6 @@ Object.keys(counterArray).length // Output 3
 ```
 
 
+本文给出的面试题答案只是很多合理答案中的几个，可能会不全面，欢迎大家补充。
 
+由于个人疏忽等原因，本文中难免会存在少量错误，欢迎大家批评指正。
