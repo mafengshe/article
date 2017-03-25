@@ -148,21 +148,11 @@ http://es6.ruanyifeng.com/#docs/function
 ```
 function foo() {
     setTimeout(() => {
-        console.log('args:', arguments);
-    }, 100);
+        console.log('id:', this.id);
+    }, 100)
 }
-
-foo(2, 4, 6, 8);// args: [2, 4, 6, 8]
-```
-
-```
-function foo() {
-    setTimeout(function () {
-        console.log('args:', arguments);
-    }, 100);
-}
-
-foo(2, 4, 6, 8);//args: []
+var id = 21;
+foo.call({ id: 42 });//id：42
 ```
 箭头函数中的this指向foo的this，箭头函数中也不存在arguments，指向外层函数foo对象的arguments。
 
