@@ -71,7 +71,9 @@ console.log(callSum1(10, 10));//20
 console.log(callSum2(10, 10));//20
 ```
 上边这个例子中，callSum1()在执行sum()函数时传入了this作为this值（在作用域中调用的，传入的就是window对象）和arguments对象。而callSum2()也调用了sum()函数，但传入的是this和一个参数数组。
+
 注：在严格模式下，未指定环境对象而调用函数，则this值不会被转型为window，除非明确把函数添加到某个对象或者调用apply()或call()，否则this值是undefined。
+
 call()与apply()方法作用相同，区别仅仅在于接收参数方式不同，对call()而言，第一个参数是this没有变化，变化的是其余参数都直接传递给函数。换句话说，在使用call()方法时，传递给函数的参数必须逐个列举出来。
 
 ```
