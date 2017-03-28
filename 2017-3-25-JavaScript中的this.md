@@ -17,7 +17,7 @@ f();//Window
 
 
 ## 对象中的this
-将一个函数赋给对象，并且调用是，它们的this是调用该函数的对象。
+将一个函数赋给对象，通过对象调用这个函数，它们的this是调用该函数的对象。
 ```
 var o = {
     color: "blue",
@@ -71,8 +71,10 @@ console.log(callSum1(10, 10));//20
 console.log(callSum2(10, 10));//20
 ```
 上边这个例子中，callSum1()在执行sum()函数时传入了this作为this值（在作用域中调用的，传入的就是window对象）和arguments对象。而callSum2()也调用了sum()函数，但传入的是this和一个参数数组。
+
 注：在严格模式下，未指定环境对象而调用函数，则this值不会被转型为window，除非明确把函数添加到某个对象或者调用apply()或call()，否则this值是undefined。
-call()与apply()方法作用相同，区别仅仅在于接收参数方式不同，对call()而言，第一个参数是this没有变化，变化的是其余参数都直接传递给函数。换句话说，在使用call()方法时，传递给函数的参数必须逐个列举出来。
+
+call()与apply()方法作用相同，区别仅仅在于接收参数方式不同，对call()而言，第一个参数是this没有变化，不同的是其余参数都直接传递给函数。换句话说，在使用call()方法时，传递给函数的参数必须逐个列举出来。
 
 ```
 function sum(num1, num2) {
@@ -83,7 +85,7 @@ function callSum(num1, num2) {
 }
 console.log(callSum(10, 10));//20
 ```
-call()和apply()真正强大的地方是能扩充函数赖以运行的作用域。
+call()和apply()真正强大的地方在于能扩充函数赖以运行的作用域。
 
 ```
 window.color = "red";
@@ -148,21 +150,11 @@ http://es6.ruanyifeng.com/#docs/function
 ```
 function foo() {
     setTimeout(() => {
-        console.log('args:', arguments);
-    }, 100);
+        console.log('id:', this.id);
+    }, 100)
 }
-
-foo(2, 4, 6, 8);// args: [2, 4, 6, 8]
-```
-
-```
-function foo() {
-    setTimeout(function () {
-        console.log('args:', arguments);
-    }, 100);
-}
-
-foo(2, 4, 6, 8);//args: []
+var id = 21;
+foo.call({ id: 42 });//id：42
 ```
 箭头函数中的this指向foo的this，箭头函数中也不存在arguments，指向外层函数foo对象的arguments。
 
@@ -178,5 +170,4 @@ foo::bar;
 //等同于
 bar.bind(foo);
 ```
-
-
+在判断this指向时，要记住，在没有绑定this的情况下，this动态绑定，指向运行时的环境，而非代码中的位置，只有箭头函数才是静态绑定，将this绑定到代码中的位置。
