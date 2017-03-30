@@ -53,6 +53,8 @@ book1.sayBook();//BookName：book1，BookWriter：Tom，BookPrice：59.9元
 ```
 在这个例子中，实例属性是在构造函数中定义的，而所有实例所共享的constructor和sayBook()方法是在原型中定义的。
 
+以下是这个例子的原型图：
+
 注：constructor属性，每个JavaScript函数都拥有一个prototype属性，这个属性的值是一个对象，这个对象包含唯一一个不可枚举的属性constructor,对象继承的constructor指代它们的构造函数。
 
 
