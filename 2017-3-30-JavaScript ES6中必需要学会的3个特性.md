@@ -1,5 +1,5 @@
 
-随着近些年JavaScript社区的不断发展，JavaScript语言有了很多新的特性。其中的一个好的方面就是通过Node.js渗透了服务端开发，这可以让JavaScript开发者更为强大。
+近年来，随着JavaScript社区的不断发展，JavaScript语言有了很多新的特性。其中的一个好的方面就是通过Node.js渗透了服务端开发，这可以让JavaScript开发者更为强大。
 
 今天，我希望讨论的是ECMA2015（ES6）规范中的三个特性，希望可以让你开始使用ES6。
 
