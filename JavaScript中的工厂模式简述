@@ -37,9 +37,9 @@ function Designer() {
 }
 
 var employee1 = Employee("programmer");
-employee1.introduction();
+employee1.introduction();//I am a Front end engineer, and I love vscode.
 var employee2 = Employee("designer");
-employee2.introduction();
+employee2.introduction();I am a UI designer, and I love photoshop.
 
 ```
 
