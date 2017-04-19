@@ -43,6 +43,6 @@ employee2.introduction();I am a UI designer, and I love photoshop.
 
 ```
 
-这是一个简单工厂模式的例子，Employee是一个工厂，可以根据传入的type的不同，创建不同的employee，每个employee有自己的职位和使用的工具，每个employee都可以介绍自己的这些信息。
+这是一个简单工厂模式的例子，Employee是一个工厂，可以根据传入的type的不同，创建不同的employee，每个employee有自己的职位和喜欢使用的工具，每个employee都可以介绍自己的这些信息。
 
 
