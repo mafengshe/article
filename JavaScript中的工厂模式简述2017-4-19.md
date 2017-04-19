@@ -1,0 +1,74 @@
+
+## 定义
+
+> 工厂模式定义创建对象的接口，但是让子类决定实例化哪个类。工厂方法将类的实例化延迟到子类。
+
+## 概述
+
+我们可以使用Object构造函数来创建单个对象，但是，使用同一个接口创建很多对象时，会产生大量重复的代码。为了解决这个问题，我们可以使用工厂模式。
+
+## 实例
+
+我们来看一个简单的例子：
+
+```
+function Employee(type) {
+    var employee = new Object();
+    if (type == "programmer") {
+        employee.position = "Front end engineer";
+        employee.tool = "I love vscode.";
+    } else if (type == "designer") {
+        employee.position = "UI designer";
+        employee.tool = "I love photoshop.";
+    }
+    employee.introduction = function () {
+        console.log("I am a " + this.position + ", and " + this.tool);
+    }
+    return employee;
+
+}
+var employee1 = Employee("programmer");
+employee1.introduction();//I am a Front end engineer, and I love vscode.
+var employee2 = Employee("designer");
+employee2.introduction();//I am a UI designer, and I love photoshop.
+```
+在上边这个例子中，我们有一个Employee方法，它可以根据我们传入的type参数创建employee对象，type不同，employee的position和tool属性也不相同。但是如果需要初始化的属性有很多呢，那这个函数中必然会有很多重复代码。我们做一些简单的修改：
+
+```
+function Employee(type) {
+    var employee;
+    if (type == "programmer") {
+        employee = new Programmer();
+    } else if (type == "designer") {
+        employee = new Designer();
+    }
+    employee.introduction = function () {
+        console.log("I am a " + this.position + ", and " + this.tool);
+    }
+    return employee;
+
+}
+
+function Programmer() {
+    this.position = "Front end engineer";
+    this.tool = "I love vscode.";
+}
+function Designer() {
+    this.position = "UI designer";
+    this.tool = "I love photoshop.";
+}
+
+var employee1 = Employee("programmer");
+employee1.introduction();//I am a Front end engineer, and I love vscode.
+var employee2 = Employee("designer");
+employee2.introduction();//I am a UI designer, and I love photoshop.
+
+```
+在上边这段代码中，我们将employee的初始化分别放到了Programmer()和Designer()中实现。这其实就是一个简单工厂模式的例子，Employee是一个工厂，可以根据传入的type的不同，创建不同的employee，每个employee有自己的职位和使用的工具，每个employee都可以介绍自己的这些信息。
+
+## 什么时候使用工厂模式
+
+当需要根据不同参数产生不同实例，这些实例都有相同的行为，这时候我们可以使用工厂模式，简化实现的过程，同时也可以减少每种对象所需的代码量。工厂模式有利于消除对象间的耦合，提供更大的灵活性。
+
+注：如果不需要另外一个类，或者不需要在运行期间判断实例化的对象属于哪个类，那就不需要使用工厂模式，大多数情况下使用new关键字和构造函数公开实例化对象，提高代码可读性。切勿滥用。
+
