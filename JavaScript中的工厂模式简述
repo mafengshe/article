@@ -1,0 +1,48 @@
+
+## 定义
+
+> 工厂模式定义创建对象的接口，但是让子类决定实例化哪个类。工厂方法将类的实例化延迟到子类。
+
+## 概述
+
+我们可以使用Object构造函数来创建单个对象，但是，使用同一个接口创建很多对象时，会产生大量重复的代码。为了解决这个问题，我们可以使用工厂模式。
+
+## 实例
+
+我们来看一个简单的例子：
+
+
+```
+function Employee(type) {
+    var employee;
+    if (type == "programmer") {
+        employee = new Programmer();
+    } else if (type == "designer") {
+        employee = new Designer();
+    }
+    employee.introduction = function () {
+        console.log("I am a " + this.position + ", and " + this.tool);
+    }
+    return employee;
+
+}
+
+function Programmer() {
+    this.position = "Front end engineer";
+    this.tool = "I love vscode.";
+}
+function Designer() {
+    this.position = "UI designer";
+    this.tool = "I love photoshop.";
+}
+
+var employee1 = Employee("programmer");
+employee1.introduction();
+var employee2 = Employee("designer");
+employee2.introduction();
+
+```
+
+这是一个简单工厂模式的例子，Employee是一个工厂，可以根据传入的type的不同，创建不同的employee，每个employee有自己的职位和使用的工具，每个employee都可以介绍自己的这些信息。
+
+
