@@ -66,7 +66,7 @@ employee2.introduction();//I am a UI designer, and I love photoshop.
 ```
 在上边这段代码中，我们将employee的初始化分别放到了Programmer()和Designer()中实现。这其实就是一个简单工厂模式的例子，Employee是一个工厂，可以根据传入的type的不同，创建不同的employee，每个employee有自己的职位和使用的工具，每个employee都可以介绍自己的这些信息。
 
-## 什么时候使用工厂模式
+## 总结
 
 当需要根据不同参数产生不同实例，这些实例都有相同的行为，这时候我们可以使用工厂模式，简化实现的过程，同时也可以减少每种对象所需的代码量。工厂模式有利于消除对象间的耦合，提供更大的灵活性。
 
