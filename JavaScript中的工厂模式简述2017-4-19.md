@@ -12,13 +12,13 @@
 我们来看一个简单的例子：
 
 ```
-var employee1=new Object();
+var employee1 = new Object();
 employee1.position = "Front end engineer";
 employee1.tool = "I love vscode.";
 employee1.introduction = function () {
     console.log("I am a " + this.position + ", and " + this.tool);
 }
-var employee2=new Object();
+var employee2 = new Object();
 employee2.position = "UI designer";
 employee2.tool = "I love photoshop.";
 employee2.introduction = function () {
@@ -60,6 +60,44 @@ employee2.introduction();//I am a UI designer, and I love photoshop.
 
 ```
 在上边这段代码中，我们将employee的初始化分别放到了Programmer()和Designer()中实现。这其实就是一个简单工厂模式的例子，Employee是一个工厂，可以根据传入的type的不同，创建不同的employee，每个employee有自己的职位和使用的工具，每个employee都可以介绍自己的这些信息。
+
+## 框架中的工厂模式
+
+jQuery中的$()其实就是一个工厂函数，它根据传入参数的不同创建元素或者去寻找上下文中的元素，创建成相应的jQuery对象。
+以下实例来自于https://github.com/jquery/jquery/blob/master/src/core/init.js
+```
+init = jQuery.fn.init = function( selector, context, root ) {
+    var match, elem;
+
+	// HANDLE: $(""), $(null), $(undefined), $(false)
+	if ( !selector ) {
+		return this;
+	}
+
+	// Method init() accepts an alternate rootjQuery
+	// so migrate can support jQuery.sub (gh-2101)
+	root = root || rootjQuery;
+
+	// Handle HTML strings
+	if ( typeof selector === "string" ) {
+			
+        //...
+
+	// HANDLE: $(DOMElement)
+	} else if ( selector.nodeType ) {
+        
+		//....
+
+	// HANDLE: $(function)
+	// Shortcut for document ready
+	} else if ( jQuery.isFunction( selector ) ) {
+		//....
+	}
+
+	return jQuery.makeArray( selector, this );
+};
+```
+同时，像Angular2、Node、Vue、React等等，很多开源框架中其实都用到了工厂模式，学会工厂模式，有助于你更好的理解和使用这些框架。
 
 ## 总结
 
