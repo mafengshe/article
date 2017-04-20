@@ -12,27 +12,22 @@
 我们来看一个简单的例子：
 
 ```
-function Employee(type) {
-    var employee = new Object();
-    if (type == "programmer") {
-        employee.position = "Front end engineer";
-        employee.tool = "I love vscode.";
-    } else if (type == "designer") {
-        employee.position = "UI designer";
-        employee.tool = "I love photoshop.";
-    }
-    employee.introduction = function () {
-        console.log("I am a " + this.position + ", and " + this.tool);
-    }
-    return employee;
-
+var employee1=new Object();
+employee1.position = "Front end engineer";
+employee1.tool = "I love vscode.";
+employee1.introduction = function () {
+    console.log("I am a " + this.position + ", and " + this.tool);
 }
-var employee1 = Employee("programmer");
+var employee2=new Object();
+employee2.position = "UI designer";
+employee2.tool = "I love photoshop.";
+employee2.introduction = function () {
+    console.log("I am a " + this.position + ", and " + this.tool);
+}
 employee1.introduction();//I am a Front end engineer, and I love vscode.
-var employee2 = Employee("designer");
 employee2.introduction();//I am a UI designer, and I love photoshop.
 ```
-在上边这个例子中，我们有一个Employee方法，它可以根据我们传入的type参数创建employee对象，type不同，employee的position和tool属性也不相同。但是如果需要初始化的属性有很多呢，那这个函数中必然会有很多重复代码。我们做一些简单的修改：
+在上边这个例子中，我们定义了两个employee，一个是Front End Engineer，另一个是UI designer，他们都有position属性和tool属性，也都有introduction方法。如果我们需要创建很多个类似employee的对象呢，那我们就需要重复很多类似的代码。接下来，我们做一些简单的修改：
 
 ```
 function Employee(type) {
