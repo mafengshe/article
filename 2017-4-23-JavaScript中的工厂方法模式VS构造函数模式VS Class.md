@@ -173,17 +173,17 @@ console.log(baz instanceof foo); // true. oops.
 ## 使用类的缺点
 
 所有构造函数的缺点，还有：
- - 诱惑用户使用extend关键字创建多层次的class，很容易导致问题。
+ - 诱惑用户使用extends关键字创建多层次的class，很容易导致问题。
 
 多层次的class会导致面向对象中一些众所周知的问题，包括：脆弱的基类问题、大猩猩香蕉问题、必要性导致的重复问题等等。不幸的是，class提供了像球可以投掷、椅子可以坐这样的扩展。更多详情，请阅读 [“The Two Pillars of JavaScript: Prototypal OO”](https://medium.com/javascript-scene/the-two-pillars-of-javascript-ee6f3281e7f3) 和 [“Inside the Dev Team Death Spiral”](https://medium.com/javascript-scene/inside-the-dev-team-death-spiral-6a7ea255467b)两篇文章。
 
-构造函数和工厂都可以用来创建多层次的结构，但是class可以用extend关键字导致你走向错误的方向。换句话说，它鼓励你考虑不灵活的（通常是错的）is-a关系，而不是更灵活的has-a或者是can-do成分关系。
+构造函数和工厂都可以用来创建多层次的结构，但是class可以用extends关键字导致你走向错误的方向。换句话说，它鼓励你考虑不灵活的（通常是错的）is-a关系，而不是更灵活的has-a或者是can-do成分关系。
 
 > 另一个提供的特性是支持执行特定行为的机会。例如，旋钮可以旋转，杠杆可以拉动，按钮可以按压等等。
 
 ## 使用工厂的优点
 
-工厂比构造函数和class更加灵活，同时也不会用extend关键字和层次继承引导人们走向错误的方向。你可以使用不同的方法从工厂方法继承。特别是，用组合工工厂函数检查[邮票规格](https://github.com/stampit-org/stamp-specification/tree/de21b0ce53d5a31725f47c9ce2f77c9edcd9cdca)。
+工厂比构造函数和class更加灵活，同时也不会用extends关键字和层次继承引导人们走向错误的方向。你可以使用不同的方法从工厂方法继承。特别是，用组合工工厂函数检查[邮票规格](https://github.com/stampit-org/stamp-specification/tree/de21b0ce53d5a31725f47c9ce2f77c9edcd9cdca)。
 
 1. 返回任意对象，使用任意原型
 
