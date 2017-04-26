@@ -6,7 +6,7 @@
 实现单例最简单的方式是创建对象字面量：
 
 ```
-var Singleton={
+var Singleton = {
     attribute1: true,
     attribute2: 10,
     method:function(){
@@ -20,26 +20,26 @@ var Singleton={
 我们可以用闭包来实现拥有私有变量的单例对象。
 
 ```
-var Singleton=(function(){
+var Singleton = (function(){
     var instance;
     function initInstance(){
-        var object=new Object();
-        object.msg="Singleton";
+        var object = new Object();
+        object.msg = "Singleton instance";
         return object;
     }
     return {
         getInstance:function(){
             if(!instance){
-                instance=initInstance();
+                instance = initInstance();
             }
             return instance;
         }
     };
 })();
 
-var instance1=Singleton.getInstance();
-var instance2=Singleton.getInstance();
-instance1===instance2;//true
+var instance1 = Singleton.getInstance();
+var instance2 = Singleton.getInstance();
+instance1 === instance2;//true
 ```
 在上边这个例子中，instance只有一个实例，都是通过Singleton.getInstance()方法得到。其中的instance作为私有变量，initInstance()是一个私有方法，getInstance()方法可以在外部访问到，并且多次调用返回都是同一个实例。
 
