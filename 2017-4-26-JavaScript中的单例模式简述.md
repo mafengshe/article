@@ -10,7 +10,7 @@ var Singleton = {
     attribute1: true,
     attribute2: 10,
     method:function(){
-        console.log("A singleton example");
+        console.log("A simple singleton example");
     }
 }
 ```
@@ -57,15 +57,57 @@ instance1 === instance2;//true
 
 使用分支技术，在脚本加载时一次性确定针对特定浏览器的代码，在初始化完成之后，每种浏览器只会执行针对它的JavaScript代码。
 
-比如说，创建ajax对象时需要根据浏览器的版本和类型使用不同的创建方式，那么这个时候我们就可以用到分支了。使用分支方法在初次加载JavaScript代码时，就确定创建ajax对象的方法，不需要每次都去判断。
+比如说，你在创建ajax对象时需要根据浏览器的版本和类型使用不同的创建方法，那么这个时候我们就可以用到分支了。使用分支方法在初次加载JavaScript代码时，就确定创建ajax对象的方法，不需要每次都去判断。
 
-## 单例模式之利
+## 框架中的单例模式
+以下代码来自https://github.com/jquery/jquery/blob/2d4f53416e5f74fa98e0c1d66b6f3c285a12f0ce/src/css/support.js
+
+```
+// Executing both pixelPosition & boxSizingReliable tests require only one layout
+// so they're executed at the same time to save the second computation.
+function computeStyleTests() {
+
+	// This is a singleton, we need to execute it only once
+	if ( !div ) {
+		return;
+	}
+
+	div.style.cssText =
+		"box-sizing:border-box;" +
+		"position:relative;display:block;" +
+		"margin:auto;border:1px;padding:1px;" +
+		"top:1%;width:50%";
+	div.innerHTML = "";
+	documentElement.appendChild( container );
+
+	var divStyle = window.getComputedStyle( div );
+	pixelPositionVal = divStyle.top !== "1%";
+
+	// Support: Android 4.0 - 4.3 only, Firefox <=3 - 44
+	reliableMarginLeftVal = divStyle.marginLeft === "2px";
+	boxSizingReliableVal = divStyle.width === "4px";
+
+	// Support: Android 4.0 - 4.3 only
+	// Some styles come back with percentage values, even though they shouldn't
+	div.style.marginRight = "50%";
+	pixelMarginRightVal = divStyle.marginRight === "4px";
+
+	documentElement.removeChild( container );
+
+	// Nullify the div so it wouldn't be stored in the memory and
+	// it will also be a sign that checks already performed
+	div = null;
+}
+```
+上面这个例子中div只需要同一个layout，执行完之后div被置为null。需要返回的值依次计算，并将结果保存。
+
+## 单例模式的优点
 
  - 能够很好地组织代码，把相关方法和属性组织在一个单例对象中。
 
  - 防止全局命名空间被变量污染，提高网页稳定性。
 
-## 单例模式之弊
+## 单例模式的缺点
 
  - 它有可能导致模块之间的强耦合。
 
