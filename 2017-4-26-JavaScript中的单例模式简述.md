@@ -85,5 +85,5 @@ assertThrows(() => new SingletonArrayBuffer(5).slice(0, 4), TypeError);
 
 ## 单例模式的缺点
 
- - 它有可能导致模块之间的强耦合。
+ - 有可能导致模块之间的强耦合。
 
