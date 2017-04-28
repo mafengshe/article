@@ -60,46 +60,22 @@ instance1 === instance2;//true
 比如说，你在创建ajax对象时需要根据浏览器的版本和类型使用不同的创建方法，那么这个时候我们就可以用到分支了。使用分支方法在初次加载JavaScript代码时，就确定创建ajax对象的方法，不需要每次都去判断。
 
 ## 框架中的单例模式
-以下代码来自https://github.com/jquery/jquery/blob/2d4f53416e5f74fa98e0c1d66b6f3c285a12f0ce/src/css/support.js
+以下代码来自https://github.com/nodejs/node/blob/73ae2d1895c2c0d1d4eeaddd284c58d776d2be87/deps/v8/test/mjsunit/es6/arraybuffer-species.js
 
 ```
-// Executing both pixelPosition & boxSizingReliable tests require only one layout
-// so they're executed at the same time to save the second computation.
-function computeStyleTests() {
-
-	// This is a singleton, we need to execute it only once
-	if ( !div ) {
-		return;
-	}
-
-	div.style.cssText =
-		"box-sizing:border-box;" +
-		"position:relative;display:block;" +
-		"margin:auto;border:1px;padding:1px;" +
-		"top:1%;width:50%";
-	div.innerHTML = "";
-	documentElement.appendChild( container );
-
-	var divStyle = window.getComputedStyle( div );
-	pixelPositionVal = divStyle.top !== "1%";
-
-	// Support: Android 4.0 - 4.3 only, Firefox <=3 - 44
-	reliableMarginLeftVal = divStyle.marginLeft === "2px";
-	boxSizingReliableVal = divStyle.width === "4px";
-
-	// Support: Android 4.0 - 4.3 only
-	// Some styles come back with percentage values, even though they shouldn't
-	div.style.marginRight = "50%";
-	pixelMarginRightVal = divStyle.marginRight === "4px";
-
-	documentElement.removeChild( container );
-
-	// Nullify the div so it wouldn't be stored in the memory and
-	// it will also be a sign that checks already performed
-	div = null;
+class SingletonArrayBuffer extends ArrayBuffer {
+  constructor(...args) {
+    if (SingletonArrayBuffer.cached) return SingletonArrayBuffer.cached;
+    super(...args);
+    SingletonArrayBuffer.cached = this;
+  }
 }
+assertThrows(() => new SingletonArrayBuffer(5).slice(0, 4), TypeError);
+
 ```
-上面这个例子中div只需要同一个layout，执行完之后div被置为null。需要返回的值依次计算，并将结果保存。
+上面这个例子中SingletonArrayBuffer.cached是一个单例对象，获取这个对象的时候，如果已经存在，返回当前存在的对象，如果不存在，将this赋给这个对象。
+
+同时单例模式也是JavaScript中很常见的一种设计模式，更好地理解单例模式，学会在你自己的代码中用单例模式，提高代码可读性与稳定性。
 
 ## 单例模式的优点
 
